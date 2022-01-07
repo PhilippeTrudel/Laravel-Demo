@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Monster;
 
 
 /*
@@ -16,4 +17,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/monsters', function () {
+    $monsters = Monster::all();
+    return response($monsters, 200);
+});
+
+
+Route::get('/monsters/{id}', function ($id) {
+    $monsters = Monster::find($id);
+    return response($monsters, 200);
 });
