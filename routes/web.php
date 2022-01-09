@@ -28,4 +28,4 @@ Route::get('/monsters', function () {
 Route::get('/monsters/{id}', function ($id) {
     $monsters = Monster::find($id);
     return response($monsters, 200);
-});
+})->where('id', '[0-9]+');
