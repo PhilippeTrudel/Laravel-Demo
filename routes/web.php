@@ -56,7 +56,7 @@ Route::post('/monsters', function(Request $request) {
 
 //delete
 // DELETE
-Route::delete('/monsters/{id}', function($id, ) {
+Route::delete('/monsters/{id}', function($id) {
 
     $monster = Monster::find($id);
     $monster->delete();
