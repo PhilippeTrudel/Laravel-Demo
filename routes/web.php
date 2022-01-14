@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Monster;
-use Symfony\Component\HttpFoundation\Request;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,18 +37,25 @@ Route::post('/monsters', function(Request $request) {
     $monster = new Monster();
 
     // set the request propreties to the monster instance
-    dd($request);
+    $monster->name = $request->name;
+    $monster->eyes = $request->eyes;
+    $monster->ssn = $request->ssn;
 
     // save
+    $monster->save();
+
+    return $monster;
 });
 
 //update
 // PUT
-Route::put();
+// Route::put();
 
-// Route::patch()
+// // Route::patch()
 
 
 //delete
 // DELETE
-Route::delete();
+Route::delete('/monsters/{id}', function(Monster $monster) {
+    return $monster->delete();
+})->where('id', '[0-9]+');
