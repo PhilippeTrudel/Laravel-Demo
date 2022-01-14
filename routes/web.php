@@ -56,6 +56,10 @@ Route::post('/monsters', function(Request $request) {
 
 //delete
 // DELETE
-Route::delete('/monsters/{id}', function(Monster $monster) {
-    return $monster->delete();
+Route::delete('/monsters/{id}', function($id, ) {
+
+    $monster = Monster::find($id);
+    $monster->delete();
+    return $monster;
+
 })->where('id', '[0-9]+');
